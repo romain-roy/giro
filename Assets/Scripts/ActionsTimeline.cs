@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timeline : MonoBehaviour
+public class ActionsTimeline : MonoBehaviour
 {
     public Button valider;
 
