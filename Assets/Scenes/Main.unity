@@ -1065,10 +1065,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 674433081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a111fb5f6fab88409eff69d8ac38362, type: 3}
+  m_Script: {fileID: 11500000, guid: c6865cdd67d5e4b4d9be1225a116602e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valider: {fileID: 318212234}
+  run: {fileID: 318212234}
+  reset: {fileID: 1295798264}
 --- !u!224 &692955594 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1084163920608965164, guid: c5618863151d32b44bff70530429a931,
@@ -1613,7 +1614,7 @@ GameObject:
   - component: {fileID: 1295798265}
   - component: {fileID: 1295798264}
   m_Layer: 5
-  m_Name: Restart
+  m_Name: Reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

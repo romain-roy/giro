@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ActionsTimeline : MonoBehaviour
+public class ActionTimeline : MonoBehaviour
 {
-    public Button valider;
+    public Button run;
+    public Button reset;
 
     private Slider timeline;
     private bool fillTimeline = false;
 
     void Start()
     {
-        valider.onClick.AddListener(FillTimeline);
+        run.onClick.AddListener(FillTimeline);
+        reset.onClick.AddListener(resetTimeline);
 
         timeline = gameObject.GetComponent<Slider>();
         timeline.interactable = false;
@@ -20,12 +22,20 @@ public class ActionsTimeline : MonoBehaviour
 
     void Update()
     {
-        if (fillTimeline && timeline.value < 1)
+        if (fillTimeline)
+        {
             timeline.value += 0.01f;
+            if (timeline.value >= 1f) fillTimeline = false;
+        }
     }
 
     void FillTimeline()
     {
         fillTimeline = true;
+    }
+
+    void resetTimeline()
+    {
+        timeline.value = 0f;
     }
 }
