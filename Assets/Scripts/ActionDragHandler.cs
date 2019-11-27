@@ -21,12 +21,12 @@ public class ActionDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 
         if (isOnTimeline())
         {
-            (transform as RectTransform).parent = TimelineRect;
+            (transform as RectTransform).SetParent(TimelineRect);
             (transform as RectTransform).anchoredPosition = new Vector3((transform as RectTransform).anchoredPosition.x, -10);
         }
         else
         {
-            (transform as RectTransform).parent = SlotRect;
+            (transform as RectTransform).SetParent(SlotRect);
         }
     }
 
