@@ -565,32 +565,32 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 458185017}
     m_ColliderPaths:
-    - - X: 73857165
-        Y: -20000084
-      - X: 80000100
-        Y: -13714273
-      - X: 80000061
-        Y: -10428497
-      - X: 79571416
-        Y: -9999900
-      - X: -79571549
-        Y: -9999995
-      - X: -80000100
-        Y: -10428672
-      - X: -80000004
-        Y: -13857281
-      - X: -73571469
-        Y: -20000058
+    - - X: 73857132
+        Y: -20000000
+      - X: 80000000
+        Y: -13714275
+      - X: 79999992
+        Y: -10428566
+      - X: 79571420
+        Y: -10000000
+      - X: -79571438
+        Y: -10000008
+      - X: -80000000
+        Y: -10428584
+      - X: -79999992
+        Y: -13857151
+      - X: -73571423
+        Y: -20000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 7.3857155, y: -2.0000083}
-      - {x: 8.00001, y: -1.3714262}
-      - {x: 8.000006, y: -1.0428491}
-      - {x: 7.957141, y: -0.99999}
-      - {x: -7.957155, y: -1.0000004}
-      - {x: -8.00001, y: -1.0428684}
-      - {x: -8, y: -1.385729}
-      - {x: -7.357146, y: -2.0000057}
+    - - {x: 7.385712, y: -2}
+      - {x: 8, y: -1.3714265}
+      - {x: 7.9999986, y: -1.042856}
+      - {x: 7.957141, y: -1}
+      - {x: -7.9571443, y: -1.0000017}
+      - {x: -8, y: -1.0428596}
+      - {x: -7.9999986, y: -1.385716}
+      - {x: -7.3571415, y: -2}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
 --- !u!50 &458185016
@@ -1881,6 +1881,7 @@ GameObject:
   - component: {fileID: 1335271569}
   - component: {fileID: 1335271567}
   - component: {fileID: 1335271568}
+  - component: {fileID: 1335271572}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -1989,12 +1990,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1335271566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.14, y: 0.78, z: 0}
+  m_LocalPosition: {x: -6.5, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1335271572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335271566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6c4fe94bd4563b49ba97d83240c1557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForce: 6
+  speed: 20
 --- !u!1 &1461182955
 GameObject:
   m_ObjectHideFlags: 0
