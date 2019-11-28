@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Transform playerTransform;
-
     private Vector2 force = Vector2.zero;
+    private bool hasItem = false;
+    private GameObject item;
 
     void Start()
     {
@@ -25,7 +26,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow)) this.Left();
         if (Input.GetKeyDown(KeyCode.W)) StartCoroutine(Wait());
         if (Input.GetKeyDown(KeyCode.A)) Stop();
-
+        if (Input.GetKeyDown(KeyCode.E)) UseItem();
     }
 
     void Stop()
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
         force = Vector2.right * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
+        if (hasItem) item.GetComponent<Item>().Rotate();
     }
 
     void Left()
@@ -50,6 +52,29 @@ public class PlayerController : MonoBehaviour
         force = Vector2.left * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
+        if (hasItem) item.GetComponent<Item>().Rotate();
+    }
+
+    void UseItem()
+    {
+        if (hasItem)
+        {
+            item.SetActive(false);
+        }
+        else
+        {
+            // impossible -> feedback audio
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Gun"))
+        {
+            item = other.gameObject;
+            hasItem = true;
+            item.GetComponent<Item>().pickUp(this.gameObject);
+        }
     }
 
     IEnumerator Wait()
