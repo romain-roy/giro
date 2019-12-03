@@ -6,9 +6,12 @@ using UnityEngine.EventSystems;
 
 public class ActionDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    public RectTransform TimelineRect; 
-    
-    RectTransform SlotRect;
+    public RectTransform TimelineRect;
+    public GameManager gameManager;
+    public Action action;
+
+    private float x_pos;
+    private RectTransform SlotRect;
 
     private void Start()
     {
@@ -18,15 +21,18 @@ public class ActionDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = GetMousePosition();
-
+        gameManager.RemoveAction(action);
         if (isOnTimeline())
         {
-            (transform as RectTransform).SetParent(TimelineRect);
-            (transform as RectTransform).anchoredPosition = new Vector3((transform as RectTransform).anchoredPosition.x, -10);
+            (transform as RectTransform)?.SetParent(TimelineRect);
+            x_pos = ((RectTransform) transform).anchoredPosition.x;
+            if (x_pos < -285) x_pos = -285;
+            if (x_pos > 285) x_pos = 285;
+            ((RectTransform) transform).anchoredPosition = new Vector3(x_pos, -10);
         }
         else
         {
-            (transform as RectTransform).SetParent(SlotRect);
+            (transform as RectTransform)?.SetParent(SlotRect);
         }
     }
 
@@ -34,12 +40,14 @@ public class ActionDragHandler : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if(isOnTimeline())
         {
-           //update Action Items 
+            //update Action
+            action.executionTime = (x_pos + 285) / 570.0f;
+            gameManager.AddAction(action);
         }
         else
         {
             //reset the position
-            (transform as RectTransform).anchoredPosition = Vector3.zero;
+            ((RectTransform) transform).anchoredPosition = Vector3.zero;
         }
     }
 

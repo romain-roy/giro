@@ -7,6 +7,7 @@ public class ActionTimeline : MonoBehaviour
 {
     public Button run;
     public Button reset;
+    public float duration;
 
     private Slider timeline;
     private bool fillTimeline = false;
@@ -24,7 +25,7 @@ public class ActionTimeline : MonoBehaviour
     {
         if (fillTimeline)
         {
-            timeline.value += 0.01f;
+            timeline.value += Time.deltaTime / duration;
             if (timeline.value >= 1f) fillTimeline = false;
         }
     }
@@ -37,5 +38,16 @@ public class ActionTimeline : MonoBehaviour
     void resetTimeline()
     {
         timeline.value = 0f;
+        fillTimeline = false;
+    }
+
+    public bool isRunning
+    {
+        get { return fillTimeline; }
+    }
+
+    public float getCurrentTime()
+    {
+        return timeline.value;
     }
 }

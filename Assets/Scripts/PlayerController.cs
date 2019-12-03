@@ -85,4 +85,26 @@ public class PlayerController : MonoBehaviour
         force = f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
     }
+
+    public void ExecuteAction(ActionType action)
+    {
+        switch (action)
+        {
+            case ActionType.MoveRight:
+                Right();
+                break;
+            case ActionType.MoveLeft:
+                Left();
+                break;
+            case ActionType.Pause:
+                StartCoroutine(Wait());
+                break;
+            case ActionType.Jump:
+                Jump();
+                break;
+            case ActionType.Fire:
+                UseItem();
+                break;
+        }
+    }
 }
