@@ -20,6 +20,6 @@ public struct Action: IComparable<Action>
 
     public int CompareTo(Action other)
     {
-        return other.executionTime.CompareTo(executionTime);
+        return - other.executionTime.CompareTo(executionTime);
     }
 }
