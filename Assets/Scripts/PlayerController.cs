@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Transform playerTransform;
+	private Animator animator;
     private Vector2 force = Vector2.zero;
     private bool hasItem = false;
     private GameObject item;
@@ -17,11 +18,12 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = this.gameObject.GetComponent<Rigidbody2D>();
         playerTransform = this.gameObject.GetComponent<Transform>();
+		animator = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) this.Jump();
+        if (Input.GetKeyDown(KeyCode.UpArrow)) this.Jump();
         if (Input.GetKeyDown(KeyCode.RightArrow)) this.Right();
         if (Input.GetKeyDown(KeyCode.LeftArrow)) this.Left();
         if (Input.GetKeyDown(KeyCode.W)) StartCoroutine(Wait());
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
 
     void Stop()
     {
+		animator.SetBool("isWalking", false);
         rigidBody.velocity = Vector2.zero;
     }
 
@@ -41,6 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Right()
     {
+		animator.SetBool("isWalking", true);
         force = Vector2.right * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
@@ -49,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     void Left()
     {
+		animator.SetBool("isWalking", true);
         force = Vector2.left * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
@@ -79,11 +84,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Wait()
     {
+		animator.SetBool("isWalking", false);
         Vector2 f = force;
         rigidBody.velocity = Vector2.zero;
         yield return new WaitForSeconds(1.0f);
         force = f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
+		animator.SetBool("isWalking", true);
     }
 
     public void ExecuteAction(ActionType action)
@@ -104,6 +111,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case ActionType.Fire:
                 UseItem();
+                break;
+			case ActionType.Stop:
+                Stop();
                 break;
         }
     }

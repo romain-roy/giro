@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
                 playerController.ExecuteAction(action.actionType);
             }
         }
+		if (!timeline.isRunning) playerController.ExecuteAction(ActionType.Stop);
     }
 
     public void AddAction(Action action)

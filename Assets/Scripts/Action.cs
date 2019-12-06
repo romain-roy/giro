@@ -9,7 +9,8 @@ public enum ActionType
     MoveLeft,
     Jump,
     Pause,
-    Fire
+    Fire,
+	Stop
 }
 
 [Serializable]
