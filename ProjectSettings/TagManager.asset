@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Gun
+  - Laser
+  - Levier
+  - Goal
   layers:
   - Default
   - TransparentFX

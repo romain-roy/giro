@@ -2,9 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject victoryPanel;
+    public Button nextLevel;
+
     [SerializeField] private ActionTimeline timeline;
     [SerializeField] private PlayerController playerController;
 
@@ -19,8 +24,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(actionsQueue.Count != 0 && timeline.isRunning)
-        { 
+        if (actionsQueue.Count != 0 && timeline.isRunning)
+        {
             Action action = actionsQueue.Peek();
             if (timeline.getCurrentTime() >= action.executionTime)
             {
@@ -28,7 +33,14 @@ public class GameManager : MonoBehaviour
                 playerController.ExecuteAction(action.actionType);
             }
         }
-		if (!timeline.isRunning) playerController.ExecuteAction(ActionType.Stop);
+        if (!timeline.isRunning) playerController.ExecuteAction(ActionType.Stop);
+
+        if (playerController.getHasWin())
+        {
+            victoryPanel.SetActive(true);
+            StartCoroutine("MaximiseVictoryPanel");
+            nextLevel.onClick.AddListener(changeLevel);
+        }
     }
 
     public void AddAction(Action action)
@@ -41,5 +53,18 @@ public class GameManager : MonoBehaviour
         actionsQueue.Remove(action);
     }
 
+    IEnumerator MaximiseVictoryPanel()
+    {
+        while (victoryPanel.transform.localScale.x <= 1f)
+        {
+            victoryPanel.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    void changeLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
 }

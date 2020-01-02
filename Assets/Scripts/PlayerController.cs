@@ -9,16 +9,17 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidBody;
     private Transform playerTransform;
-	private Animator animator;
+    private Animator animator;
     private Vector2 force = Vector2.zero;
     private bool hasItem = false;
     private GameObject item;
+    private bool hasWin = false;
 
     void Start()
     {
         rigidBody = this.gameObject.GetComponent<Rigidbody2D>();
         playerTransform = this.gameObject.GetComponent<Transform>();
-		animator = this.gameObject.GetComponent<Animator>();
+        animator = this.gameObject.GetComponent<Animator>();
     }
 
     void Update()
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     void Stop()
     {
-		animator.SetBool("isWalking", false);
+        animator.SetBool("isWalking", false);
         rigidBody.velocity = Vector2.zero;
     }
 
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
     void Right()
     {
-		animator.SetBool("isWalking", true);
+        animator.SetBool("isWalking", true);
         force = Vector2.right * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
 
     void Left()
     {
-		animator.SetBool("isWalking", true);
+        animator.SetBool("isWalking", true);
         force = Vector2.left * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
@@ -80,17 +81,40 @@ public class PlayerController : MonoBehaviour
             hasItem = true;
             item.GetComponent<Item>().pickUp(this.gameObject);
         }
+
+        if (other.gameObject.CompareTag("Levier"))
+        {
+            GameObject laser = GameObject.FindGameObjectWithTag("Laser");
+            if (laser != null)
+                laser.SetActive(!laser.activeSelf);
+        }
+
+        if (other.gameObject.CompareTag("Laser"))
+        {
+            this.gameObject.SetActive(false);
+        }
+
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            rigidBody.velocity = new Vector2(0f, 0f);
+            hasWin = true;
+        }
+    }
+
+    public bool getHasWin()
+    {
+        return this.hasWin;
     }
 
     IEnumerator Wait()
     {
-		animator.SetBool("isWalking", false);
+        animator.SetBool("isWalking", false);
         Vector2 f = force;
         rigidBody.velocity = Vector2.zero;
         yield return new WaitForSeconds(1.0f);
         force = f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
-		animator.SetBool("isWalking", true);
+        animator.SetBool("isWalking", true);
     }
 
     public void ExecuteAction(ActionType action)
@@ -112,7 +136,7 @@ public class PlayerController : MonoBehaviour
             case ActionType.Fire:
                 UseItem();
                 break;
-			case ActionType.Stop:
+            case ActionType.Stop:
                 Stop();
                 break;
         }
