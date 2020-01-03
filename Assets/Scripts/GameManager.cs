@@ -55,9 +55,10 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MaximiseVictoryPanel()
     {
-        while (victoryPanel.transform.localScale.x <= 1f)
+        while (victoryPanel.transform.localScale.x <= 0.7f)
         {
-            victoryPanel.transform.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+            victoryPanel.transform.localScale += new Vector3(0.01f, 0.0085f, 0f);
+            victoryPanel.transform.Rotate(0f, 0f, 5f, Space.Self);
             yield return new WaitForSeconds(.1f);
         }
     }
