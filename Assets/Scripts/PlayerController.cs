@@ -65,11 +65,11 @@ public class PlayerController : MonoBehaviour
     {
         if (hasItem)
         {
+            if (item.name == "Gun")
+            {
+                Instantiate(item.GetComponent<Item>().projectile, item.gameObject.transform.position, Quaternion.identity);
+            }
             item.SetActive(false);
-        }
-        else
-        {
-            // impossible -> feedback audio
         }
     }
 

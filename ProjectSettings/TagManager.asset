@@ -8,6 +8,7 @@ TagManager:
   - Laser
   - Levier
   - Goal
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    public Projectile projectile;
+
     private bool isPickedUp = false;
     private GameObject player;
     private Transform itemTransform;
