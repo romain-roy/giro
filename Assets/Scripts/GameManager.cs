@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 
     void changeLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
 }
