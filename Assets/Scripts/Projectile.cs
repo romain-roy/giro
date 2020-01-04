@@ -20,8 +20,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            other.gameObject.SetActive(false);
-            this.gameObject.SetActive(false);
+            other.gameObject.GetComponent<Animator>().Play("Explosion");
+            other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            Destroy(this.gameObject);
         }
     }
 }

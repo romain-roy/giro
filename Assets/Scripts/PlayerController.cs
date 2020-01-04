@@ -91,7 +91,9 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.CompareTag("Laser"))
         {
-            this.gameObject.SetActive(false);
+            rigidBody.velocity = new Vector2(0f, 0f);
+            this.animator.Play("Explosion", -1, 0f);
+            // this.gameObject.SetActive(false);
         }
 
         if (other.gameObject.CompareTag("Goal"))

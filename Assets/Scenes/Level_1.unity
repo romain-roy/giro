@@ -2070,6 +2070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 5
   moveForce: 5
+  deathAnimation: {fileID: 0}
 --- !u!1 &1461182955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3350,6 +3351,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1066374791}
     m_Modifications:
+    - target: {fileID: 6148730574430299908, guid: 83f0633318099b147a7dbe88cd59b87f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 6148730574815066529, guid: 83f0633318099b147a7dbe88cd59b87f,
         type: 3}
       propertyPath: m_Name
