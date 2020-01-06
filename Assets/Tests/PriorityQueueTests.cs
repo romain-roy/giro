@@ -149,5 +149,24 @@ namespace Tests
 				queue.Dequeue();
 			}
 		}
+
+        [Test]
+        public void _11_NItemsTest()
+        {
+            PriorityQueue<float> queue = new PriorityQueue<float>();
+            queue.Enqueue(5);
+            queue.Enqueue(6);
+            queue.Enqueue(2);
+            queue.Enqueue(1);
+            queue.Enqueue(3);
+
+            float[] expected = {1, 2, 3, 5, 6};
+
+            for (int i = 0; i < expected.Length; i++)
+            {
+                Assert.AreEqual(expected[i], queue.Peek());
+                queue.Dequeue();
+            }
+        }
     }
 }

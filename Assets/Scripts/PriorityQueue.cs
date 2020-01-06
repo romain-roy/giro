@@ -45,7 +45,7 @@ public class PriorityQueue<T> where T : IComparable<T>
             if (left_child_index > last_index)
                 break;  // no more children
             int right_child_index = left_child_index + 1;
-            if (right_child_index <= last_index && data[right_child_index].CompareTo(data[left_child_index]) > 0) 
+            if (right_child_index <= last_index && data[left_child_index].CompareTo(data[right_child_index]) > 0) 
                 // if there is a rc (ci + 1), and it is smaller than left child, use the rc instead
                 child_index = right_child_index;
             if (data[child_index].CompareTo(data[parent_index]) >= 0)
