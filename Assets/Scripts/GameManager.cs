@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         actionsQueue = new PriorityQueue<Action>();
-
+        nextLevel.onClick.AddListener(changeLevel);
     }
 
     // Update is called once per frame
@@ -39,7 +39,6 @@ public class GameManager : MonoBehaviour
         {
             victoryPanel.SetActive(true);
             StartCoroutine("MaximiseVictoryPanel");
-            nextLevel.onClick.AddListener(changeLevel);
         }
     }
 

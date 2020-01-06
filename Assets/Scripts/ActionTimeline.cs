@@ -9,7 +9,6 @@ public class ActionTimeline : MonoBehaviour
     public Button run;
     public Button reset;
     public float duration;
-	public GameObject player;
 
     private Slider timeline;
     private bool fillTimeline = false;
@@ -41,7 +40,6 @@ public class ActionTimeline : MonoBehaviour
     {
         // timeline.value = 0f;
         // fillTimeline = false;
-		// player.GetComponent<Transform>().position = new Vector3(-6.5f, -0.5f, 0f);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
