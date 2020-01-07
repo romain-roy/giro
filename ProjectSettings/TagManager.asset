@@ -9,6 +9,7 @@ TagManager:
   - Levier
   - Goal
   - Obstacle
+  - Fall
   layers:
   - Default
   - TransparentFX

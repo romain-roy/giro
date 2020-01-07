@@ -95,6 +95,13 @@ public class PlayerController : MonoBehaviour
             this.animator.Play("Explosion", -1, 0f);
             // this.gameObject.SetActive(false);
         }
+        
+        if (other.gameObject.CompareTag("Fall"))
+        {
+            rigidBody.velocity = new Vector2(0f, 0f);
+            this.animator.Play("Explosion", -1, 0f);
+            // this.gameObject.SetActive(false);
+        }
 
         if (other.gameObject.CompareTag("Goal"))
         {
