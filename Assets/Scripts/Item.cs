@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
     {
         if (isPickedUp)
         {
-            itemTransform.position = player.GetComponent<Transform>().position;
+            itemTransform.position = player.GetComponent<Transform>().position + new Vector3(0.8f, 0f, 0f);
         }
     }
 

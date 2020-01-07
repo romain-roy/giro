@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
 
     void Stop()
     {
-        animator.SetBool("isWalking", false);
         rigidBody.velocity = Vector2.zero;
     }
 
@@ -45,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
     void Right()
     {
-        animator.SetBool("isWalking", true);
         force = Vector2.right * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
@@ -54,7 +52,6 @@ public class PlayerController : MonoBehaviour
 
     void Left()
     {
-        animator.SetBool("isWalking", true);
         force = Vector2.left * moveForce;
         rigidBody.velocity = Vector2.zero;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
@@ -117,13 +114,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Wait()
     {
-        animator.SetBool("isWalking", false);
         Vector2 f = force;
         rigidBody.velocity = Vector2.zero;
         yield return new WaitForSeconds(1.0f);
         force = f;
         rigidBody.AddForce(force, ForceMode2D.Impulse);
-        animator.SetBool("isWalking", true);
     }
 
     public void ExecuteAction(ActionType action)
